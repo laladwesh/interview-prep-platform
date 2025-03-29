@@ -6,7 +6,7 @@ import { Button } from "./ui/button";
 import DisplayTechIcons from "./DisplayTechIcons";
 
 import { cn, getRandomInterviewCover } from "@/lib/utils";
-// import { getFeedbackByInterviewId } from "@/lib/actions/general.action";
+import { getFeedbackByInterviewId } from "@/lib/actions/general.action";
 
 const InterviewCard = async ({
   interviewId,
@@ -16,13 +16,13 @@ const InterviewCard = async ({
   techstack,
   createdAt,
 }: InterviewCardProps) => {
-  const feedback = null
-    // userId && interviewId
-    //   ? await getFeedbackByInterviewId({
-    //       interviewId,
-    //       userId,
-    //     })
-    //   : null;
+  const feedback =
+    userId && interviewId
+      ? await getFeedbackByInterviewId({
+          interviewId,
+          userId,
+        })
+      : null;
 
   const normalizedType = /mix/gi.test(type) ? "Mixed" : type;
 
@@ -43,10 +43,10 @@ const InterviewCard = async ({
         <div>
           {/* Type Badge */}
           <div
-            // className={cn(
-            //   "absolute top-0 right-0 w-fit px-4 py-2 rounded-bl-lg",
-            //   badgeColor
-            // )}
+            className={cn(
+              "absolute top-0 right-0 w-fit px-4 py-2 rounded-bl-lg",
+              badgeColor
+            )}
           >
             <p className="badge-text ">{normalizedType}</p>
           </div>
