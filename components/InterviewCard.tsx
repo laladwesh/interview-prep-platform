@@ -8,6 +8,7 @@ import DisplayTechIcons from "./DisplayTechIcons";
 import { cn, getRandomInterviewCover } from "@/lib/utils";
 import { getFeedbackByInterviewId } from "@/lib/actions/general.action";
 
+// The InterviewCard is an async server component
 const InterviewCard = async ({
   interviewId,
   userId,
@@ -16,6 +17,7 @@ const InterviewCard = async ({
   techstack,
   createdAt,
 }: InterviewCardProps) => {
+  // If both userId and interviewId are present, fetch feedback for this interview and user
   const feedback =
     userId && interviewId
       ? await getFeedbackByInterviewId({
@@ -24,8 +26,10 @@ const InterviewCard = async ({
         })
       : null;
 
+  // Normalize the type for display: convert "mix" to "Mixed"
   const normalizedType = /mix/gi.test(type) ? "Mixed" : type;
 
+  // Pick badge color based on interview type
   const badgeColor =
     {
       Behavioral: "bg-light-400",
@@ -33,6 +37,7 @@ const InterviewCard = async ({
       Technical: "bg-light-800",
     }[normalizedType] || "bg-light-600";
 
+  // Format the date (use feedback's createdAt if available, else interview creation date)
   const formattedDate = dayjs(
     feedback?.createdAt || createdAt || Date.now()
   ).format("MMM D, YYYY");
@@ -41,7 +46,7 @@ const InterviewCard = async ({
     <div className="card-border w-[360px] max-sm:w-full min-h-96">
       <div className="card-interview">
         <div>
-          {/* Type Badge */}
+          {/* Interview Type Badge */}
           <div
             className={cn(
               "absolute top-0 right-0 w-fit px-4 py-2 rounded-bl-lg",
@@ -51,7 +56,7 @@ const InterviewCard = async ({
             <p className="badge-text ">{normalizedType}</p>
           </div>
 
-          {/* Cover Image */}
+          {/* Interview Cover Image */}
           <Image
             src={getRandomInterviewCover()}
             alt="cover-image"
@@ -60,11 +65,12 @@ const InterviewCard = async ({
             className="rounded-full object-fit size-[90px]"
           />
 
-          {/* Interview Role */}
+          {/* Interview Role Title */}
           <h3 className="mt-5 capitalize">{role} Interview</h3>
 
-          {/* Date & Score */}
+          {/* Date and Score Row */}
           <div className="flex flex-row gap-5 mt-3">
+            {/* Date */}
             <div className="flex flex-row gap-2">
               <Image
                 src="/calendar.svg"
@@ -75,22 +81,26 @@ const InterviewCard = async ({
               <p>{formattedDate}</p>
             </div>
 
+            {/* Feedback Score (if available) */}
             <div className="flex flex-row gap-2 items-center">
               <Image src="/star.svg" width={22} height={22} alt="star" />
               <p>{feedback?.totalScore || "---"}/100</p>
             </div>
           </div>
 
-          {/* Feedback or Placeholder Text */}
+          {/* Feedback Assessment or Placeholder Text */}
           <p className="line-clamp-2 mt-5">
             {feedback?.finalAssessment ||
               "You haven't taken this interview yet. Take it now to improve your skills."}
           </p>
         </div>
 
+        {/* Tech Stack Icons and Action Button */}
         <div className="flex flex-row justify-between">
+          {/* Tech stack icons */}
           <DisplayTechIcons techStack={techstack} />
 
+          {/* Main action button: feedback or interview */}
           <Button className="btn-primary">
             <Link
               href={
