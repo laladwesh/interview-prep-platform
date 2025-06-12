@@ -1,36 +1,75 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# WisePrep (AI Interview Platform)
 
-## Getting Started
+WisePrep is an AI-powered job interview preparation web platform. Users can practice mock interviews tailored to their chosen roles and tech stacks, receive instant AI feedback, and track their progress—all with a beautiful, modern interface. This project uses Next.js 14+ App Router, TypeScript, Firebase, Google Gemini, and VAPI for real-time AI voice interviews.
 
-First, run the development server:
+---
+
+## ✨ Features
+
+- **AI-Powered Mock Interviews**  
+  Get dynamically generated interview questions for any role, level, and tech stack.
+
+- **Voice-based Interview Experience**  
+  Experience real-time interviews with an AI interviewer via VAPI (voice API).
+
+- **Instant AI Feedback**  
+  Receive structured feedback, category-wise scoring, strengths, and areas for improvement right after your interview.
+
+- **Personal Dashboard**  
+  Track all your past interviews, review detailed feedback, and retake interviews to improve.
+
+- **Tech Stack Visualization**  
+  See relevant tech stack icons for each interview.
+
+- **Sign Up/Sign In with Firebase Auth**  
+  Secure authentication and session management.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend:** Next.js 14+, React, TypeScript, TailwindCSS  
+- **UI Components:** Custom components + Headless UI  
+- **Backend/DB:** Firebase Firestore  
+- **Authentication:** Firebase Auth  
+- **AI:** Google Gemini (Gemini 2.0 Flash via ai-sdk)  
+- **Voice API:** VAPI (for AI interviewer)  
+- **State/Forms:** React Hook Form, Zod  
+- **Other:** dayjs, Sonner (toast notifications)
+
+---
+
+## 📦 Folder Structure
+
+/app
+/(root)/ # Main app routes and pages
+/components/ # All reusable components (Agent, InterviewCard, AuthForm, etc.)
+/lib/ # Utility functions, API actions, vapi sdk, and helpers
+/firebase/ # Firebase client and admin configs
+/public/ # Static assets (images, logos)
+/constants/ # Project-wide constants (e.g., interviewer workflows)
+
+---
+
+## 🚀 Getting Started
+
+### 1. **Clone the Repository**
 
 ```bash
+git clone https://github.com/your-username/wiseprep.git
+cd wiseprep
+npm install
+# or
+yarn install
+Set Up Environment Variables
+Create a .env.local file with:
+NEXT_PUBLIC_FIREBASE_API_KEY=...
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=...
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=...
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=...
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=...
+NEXT_PUBLIC_FIREBASE_APP_ID=...
+NEXT_PUBLIC_VAPI_WORKFLOW_ID=...
+GOOGLE_AI_API_KEY=...
+Run the Development Server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
