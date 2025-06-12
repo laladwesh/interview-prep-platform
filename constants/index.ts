@@ -1,6 +1,6 @@
 import { CreateAssistantDTO } from "@vapi-ai/web/dist/api";
 import { z } from "zod";
-
+//mapping for tech stack names to their standardized forms
 export const mappings = {
   "react.js": "react",
   reactjs: "react",
@@ -96,7 +96,7 @@ export const mappings = {
   vercel: "vercel",
   "aws amplify": "amplify",
 };
-
+//Vapi AI Interviewer Assistant Configuration
 export const interviewer: CreateAssistantDTO = {
   name: "Interviewer",
   firstMessage:
@@ -154,7 +154,7 @@ End the conversation on a polite and positive note.
     ],
   },
 };
-
+//zod schema for interview feedback
 export const feedbackSchema = z.object({
   totalScore: z.number(),
   categoryScores: z.tuple([
@@ -188,7 +188,7 @@ export const feedbackSchema = z.object({
   areasForImprovement: z.array(z.string()),
   finalAssessment: z.string(),
 });
-
+//export interview cover images
 export const interviewCovers = [
   "/adobe.png",
   "/amazon.png",
@@ -203,7 +203,7 @@ export const interviewCovers = [
   "/tiktok.png",
   "/yahoo.png",
 ];
-
+//export dummy interviews for testing
 export const dummyInterviews: Interview[] = [
   {
     id: "1",
