@@ -1,5 +1,5 @@
 "use server";
-
+// lib/actions/auth.action.ts
 import { auth, db } from "@/firebase/admin";
 import { cookies } from "next/headers";
 
