@@ -1,7 +1,8 @@
 import { interviewCovers, mappings } from "@/constants";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
-
+// This file contains utility functions for the application, including class name merging and fetching technology logos.
+// It also includes functions to normalize technology names and check if icons exist.
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
